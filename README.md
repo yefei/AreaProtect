@@ -7,7 +7,7 @@
 
 ## 下载地址
 支持版本所有 Spigot 1.8 服务器
-<http://pan.baidu.com/s/1o6Zu6c6#path=%252FAreaProtect>
+<https://github.com/yefei/AreaProtect/releases>
 
 ## 特色
 * 全面支持 Minecraft 1.8 物品保护
