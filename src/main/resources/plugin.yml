@@ -1,0 +1,52 @@
+name: AreaProtect
+author: Yefei
+website: http://minecon.cn
+description: Area Protect
+main: cn.minecon.areaprotect.AreaProtect
+version: ${project.version}
+softdepend: [Vault]
+commands:
+  area:
+    description: Info about AreaProtect plugin.
+    usage: /<command>
+    aliases: [a]
+permissions:
+  areaprotect.admin:
+    description: Admin use
+    default: op
+  areaprotect.serverland:
+    description: Set area to server land.
+    default: op
+  areaprotect.select:
+    description: Select area.
+    default: true
+  areaprotect.create:
+    description: Create selected area.
+    default: true
+  areaprotect.info:
+    description: View area info.
+    default: true
+  areaprotect.flag:
+    description: Set area flags.
+    default: true
+  areaprotect.flag.player:
+    description: Set area player flags.
+    default: true
+  areaprotect.list:
+    description: Show all areas.
+    default: true
+  areaprotect.my:
+    description: Show my all areas.
+    default: true
+  areaprotect.delete:
+    description: Delete area.
+    default: true
+  areaprotect.tp:
+    description: TP to area.
+    default: true
+  areaprotect.tp.set:
+    description: Set area TP location.
+    default: true
+  areaprotect.setowner:
+    description: Set area owner.
+    default: true

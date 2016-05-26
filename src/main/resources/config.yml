@@ -1,0 +1,221 @@
+# 是否开启调试模式
+Debug: false
+
+# 区域选择工具 280:木棍
+SelectionTool: 280
+
+# 如果初始化失败是否关闭服务器
+ShutdownIfFailLoad: true
+
+# 传送延迟(秒,0=立即)
+TeleportDelay: 10
+
+# 传送启用价格(0=免费)
+TeleportEnableCost: 10000
+
+# 允许圈地的世界
+AllowWorlds:
+  - world
+
+# 区域名称
+Name:
+  MinLength: 2
+  MaxLength: 10
+  Retains:
+    - spawn
+    - shop
+    - world
+    - nether
+    - end
+
+# 启用经济系统
+EnabledEconomy: true
+
+# 圈地价格计算公式
+CostEquation: XSize * ZSize * 10
+
+# 每个用户的最多可拥有的领地数
+MaxAreas: 3
+
+# 尺寸限制
+MinXSize: 5
+MinZSize: 5
+MaxXSize: 50
+MaxZSize: 50
+
+# 区域默认权限设置
+DefaultAreaFlags:
+  WaterFlow: true
+
+# 消息
+Messages:
+  ServerLand: 服务器所属
+  PlayerContextRequired: 此命令需要玩家执行
+  NoPermissionForThisCommand: 你没有权限执行这个命令
+  InvalidNumber: <RED>不正确的数值 <YELLOW>"{0}"
+  AdminActivate: 领地管理模式<YELLOW>打开
+  AdminDeactivate: 领地管理模式<RED>关闭
+  NameInRetains: <RED>你不可以使用 <YELLOW>{0} <RED>这个名称
+  HelpHeader: <DARK_GREEN>====================[ <YELLOW>领地命令帮助 <DARK_GREEN>]====================
+  NameTooShort: <RED>名称不能少于<YELLOW>{0}<RED>个字符,当前长度<YELLOW>{1}
+  NameTooLong: <RED>名称不能多于<YELLOW>{0}<RED>个字符,当前长度<YELLOW>{1}
+  InvalidName: <RED>无效的名称, 只能使用字母、数字、下划线
+  NameAlreadyExists: <RED>拥有此名称<YELLOW>{0}<RED>的领地已经存在,请换其他名称
+  NotAllowToCurrentWorld: <RED>当前世界不允许创建领地
+  FlagDeny: <RED>你没有权限<YELLOW>{0}
+  AreaDoesNotExist: <RED>领地<YELLOW>{0}<RED>不存在
+  FlagDoesNotExist: <RED>权限<YELLOW>{0}<RED>不存在
+  SetAreaFlag: "<GREEN>已设置领地<YELLOW>{0}<GREEN>的权限:<YELLOW>{1}<GREEN>为{2}"
+  RemoveAreaFlag: "<GREEN>已删除领地<YELLOW>{0}<GREEN>的权限:<YELLOW>{1}"
+  ResetAreaFlag: "<GREEN>已重置领地<YELLOW>{0}<GREEN>的权限设置"
+  ClearAreaFlag: "<GREEN>已清除领地<YELLOW>{0}<GREEN>的所有权限设置"
+  CopyAreaFlag: "<GREEN>已复制目标领地<YELLOW>{0}<GREEN>的所有权限设置到<YELLOW>{1}<GREEN>中"
+  CannotCopySelfFlag: <RED>你不能复制同一个领地的权限
+  DeleteAreaComplete: "<GREEN>删除领地<YELLOW>{0}<GREEN>完成"
+  Allow: <GREEN>+允许
+  Forbid: <RED>-禁止
+  NotInArea: <RED>你不在任何领地里
+  NotFlags: <DARK_GRAY>无任何权限设置
+  YouNotOwner: <RED>你不是领地拥有人
+  PlayerNotOnline: <RED>玩家 <YELLOW>{0} <RED>不在线
+  PlayerDoesNotExist: <RED>玩家 <YELLOW>{0} <RED>不存在
+  SetPlayerFlag: "<GREEN>已设置玩家<YELLOW>{0}<GREEN>在领地<YELLOW>{1}<GREEN>的权限:<YELLOW>{2}<GREEN>为{3}"
+  RemovePlayerFlag: "<GREEN>已删除玩家<YELLOW>{0}<GREEN>在领地<YELLOW>{1}<GREEN>的权限:<YELLOW>{2}"
+  ClearPlayerFlag: "<GREEN>已清除玩家<YELLOW>{0}<GREEN>在领地<YELLOW>{1}<GREEN>的所有权限设置"
+  TPDelay: <GREEN>即将传送到<YELLOW>{0}<GREEN>请在原地等待<RED>{1}<GREEN>秒
+  TPComplete: "<GREEN>你已经传送到领地: <YELLOW>{0}"
+  TPCancelled: <RED>传送已经取消
+  AreaNotSetTPLocation: <RED>领地<YELLOW>{0}<RED>没有设置传送点
+  TeleportationCommencing: <GREEN>开始传送
+  TeleportationCountdown: <GREEN>传送倒计时 <YELLOW>{0} <GREEN>秒
+  Info:
+    Header: <DARK_GREEN>====================[ <YELLOW>查看领地信息 <DARK_GREEN>]====================
+    Name: "<LIGHT_PURPLE>领地名称: <YELLOW>{0}"
+    Owner: "<LIGHT_PURPLE>领地主人: <YELLOW>{0}"
+    Size: "<LIGHT_PURPLE>领地面积: <YELLOW>({1} X {2}) = {0} <LIGHT_PURPLE>平方"
+    CreationDate: "<LIGHT_PURPLE>创建日期: <YELLOW>{0}"
+    AreaFlags: "<LIGHT_PURPLE>默认权限: {0}"
+    PlayerFlags: "<LIGHT_PURPLE>玩家权限:"
+  List:
+    Header: <DARK_GREEN>====================[ <YELLOW>查看全部领地 <DARK_GREEN>]====================
+    Result: <YELLOW>{0}
+    Footer: <GRAY>共 <YELLOW>{0} <GRAY>个领地
+  My:
+    Header: <DARK_GREEN>====================[ <YELLOW>我的全部领地 <DARK_GREEN>]====================
+    Result: <YELLOW>{0}
+    Footer: <GRAY>共 <YELLOW>{0} <GRAY>个领地
+  Commands:
+    Admin:
+      - "<DARK_AQUA>激活/关闭管理员模式"
+    Select: 
+      - "<DARK_AQUA>查看已选区域"
+      - "<YELLOW>X直径 Z直径 <DARK_AQUA>以你为中心输入直径选择区域"
+    Create:
+      - "<YELLOW>领地名称 <DARK_AQUA>创建领地"
+    My:
+      - "<DARK_AQUA>列出自己的领地"
+    Info:
+      - "<GRAY>[领地] <DARK_AQUA>查看领地信息"
+    Flag:
+      - "set <YELLOW>flag <RESET>yes/no <GRAY>[领地] <DARK_AQUA>设置领地权限"
+      - "remove <YELLOW>flag <GRAY>[领地] <DARK_AQUA>删除一个权限"
+      - "reset <GRAY>[领地] <DARK_AQUA>重置领地权限设置为默认值"
+      - "clear <GRAY>[领地] <DARK_AQUA>清除领地的所有权限设置"
+      - "copy <YELLOW>目标领地 <GRAY>[领地] <DARK_AQUA>复制目标领地的所有权限设置"
+    Player:
+      - "set <YELLOW>玩家名称 flag <RESET>yes/no  <GRAY>[领地]<DARK_AQUA>设置玩家在领地的权限"
+      - "remove <YELLOW>玩家名称 flag <GRAY>[领地]<DARK_AQUA>删除一个玩家权限"
+      - "clear <YELLOW>玩家名称 <GRAY>[领地] <DARK_AQUA>清除玩家所有权限设置"
+    Delete:
+      - "<YELLOW>领地名称 <DARK_AQUA>删除领地"
+    List:
+      - "<DARK_AQUA>列出所有领地"
+    TP:
+      - "<YELLOW>领地名称 <DARK_AQUA>传送到目标领地"
+    TPSet:
+      - "<DARK_AQUA>设置当前位置为传送点"
+    SetOwner:
+      - "<YELLOW>新主人 <GRAY>[领地] <DARK_AQUA>设置领地主人"
+    ServerLand:
+      - "<GRAY>[领地] <DARK_AQUA>将领地设置为服务器土地"
+  Select:
+    PrimaryPoint: "<LIGHT_PURPLE>已选择领地起点位置: <YELLOW>{0}, {1}"
+    SecondaryPoint: "<LIGHT_PURPLE>已选择领地终点位置: <YELLOW>{0}, {1}"
+    NotPrimaryPoint: <RED>你没有选择起点位置. <GRAY>(使用木棍单击左键选择)
+    NotSecondaryPoint: <RED>你没有选择终点位置. <GRAY>(使用木棍单击右键选择)
+    Size: "<LIGHT_PURPLE>已选择的区域尺寸: <YELLOW>{0} <LIGHT_PURPLE>平方"
+    SizeX: "<LIGHT_PURPLE>X 尺寸: <YELLOW>{0}"
+    SizeZ: "<LIGHT_PURPLE>Z 尺寸: <YELLOW>{0}"
+    BySizeMustGreaterZero: <RED>尺寸必须大于零
+    Cost: "<LIGHT_PURPLE>总价: <YELLOW>{0}"
+    XSizeGTE: <RED>X尺寸必须大于等于 <YELLOW>{0} <RED>当前尺寸为 <YELLOW>{1}
+    ZSizeGTE: <RED>Z尺寸必须大于等于 <YELLOW>{0} <RED>当前尺寸为 <YELLOW>{1}
+    XSizeLTE: <RED>X尺寸必须小于等于 <YELLOW>{0} <RED>当前尺寸为 <YELLOW>{1}
+    ZSizeLTE: <RED>Z尺寸必须小于等于 <YELLOW>{0} <RED>当前尺寸为 <YELLOW>{1}
+    AreaCollision: <RED>你选择的区域与 <YELLOW>{0} <RED>有冲撞, 请重新选择
+  Create:
+    Success: "<GREEN>领地 <YELLOW>{0} <GREEN>创建完成!"
+    TooManyAreas: <RED>你已经达到最大领地数限制, 不可创建
+    NotEnoughMoney: <RED>创建此领地需要 <YELLOW>{0}<RED>, 你的可用余额只有 <GREEN>{1}
+    Failed: <RED>创建领地失败
+    Expense: "<GREEN>购买领地花费: <RED>{0}<GREEN>, 余额: <YELLOW>{1}"
+  TPSet:
+    Complete: <GREEN>已设置领地<YELLOW>{0}<GREEN>的传送点在当前位置
+    NotEnoughMoney: <RED>开启领地传送需要 <YELLOW>{0}<RED>, 你的可用余额只有 <GREEN>{1}
+    Expense: "<GREEN>开启领地传送花费: <RED>{0}<GREEN>, 余额: <YELLOW>{1}"
+    ExpenseConfirm: "<YELLOW>开启领地传送需要花费: <RED>{0}<YELLOW>, 请再输入一次设置命令以确认开启"
+  SetOwner:
+    Success: "<GREEN>已经将领地 <RED>{0}<GREEN>的主人更改为: <YELLOW>{1}"
+  ServerLand:
+    Success: "<GREEN>已经将领地 <RED>{0}<GREEN>的主人更改为服务器土地"
+  Flags:
+    Root: 根权限
+    PVP: PVP
+    Build: 放置和破坏方块
+    Destroy: 破坏
+    EndermanPickup: 末影人拾取方块
+    Place: 放置
+    Trample: 踩踏庄家
+    Bucket: 使用桶
+    LavaBucket: 使用岩浆桶
+    WaterBucket: 使用水桶
+    Damage: 伤害
+    FireSpread: 火势蔓延
+    Ignite: 点火
+    Piston: 活塞推入
+    BedExplosion: 床爆炸时损坏方块
+    Creeper: JJ怪爆炸时损坏方块
+    Fireball: 火球爆炸时损坏方块
+    TNT: TNT爆炸时损坏方块
+    WitherExplosion: 凋零爆炸时损坏方块
+    Explosion: 爆炸时损坏方块
+    Flow: 液体流动
+    LavaFlow: 岩浆流动
+    WaterFlow: 水流动
+    Brew: 酿造台
+    Chest: 打开箱子
+    Container: 打开所有容器
+    Furnace: 打开熔炉
+    ItemFrame: 放置或拿下展示框内的物品
+    ArmorStand: 放置或拿下盔甲架上的物品
+    Door: 打开门(木门、栅拦门、活板门)
+    FenceGate: 开关栅拦门
+    HingedDoor: 开关木门
+    TrapDoor: 开关活板门
+    Cake: 吃蛋糕
+    DragonEgg: 点击龙蛋
+    Use: 使用(所有可交互的功能)
+    Button: 点击石质按钮
+    Diode: 切换红石中继器
+    Lever: 操作拉杆
+    Anvil: 使用铁砧
+    Beacon: 使用信标
+    Bed: 使用床
+    EnchantmentTable: 使用附魔台
+    EnderChest: 使用末影箱
+    Utility: 使用所有工具(铁砧、信标、床、附魔台、末影箱、工作台)
+    WorkBench: 使用工作台
+    Hopper: 打开漏斗
+    Dropper: 打开投掷器
+    Dispenser: 打开发射器
+    TP: 传送到领地
