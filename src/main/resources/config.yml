@@ -1,17 +1,17 @@
 # 是否开启调试模式
 Debug: false
 
-# 区域选择工具 280:木棍
-SelectionTool: 280
+# 区域选择工具 木棍
+SelectionTool: stick
 
 # 如果初始化失败是否关闭服务器
 ShutdownIfFailLoad: true
 
 # 传送延迟(秒,0=立即)
-TeleportDelay: 10
+TeleportDelay: 5
 
 # 传送启用价格(0=免费)
-TeleportEnableCost: 10000
+TeleportEnableCost: 1000
 
 # 允许圈地的世界
 AllowWorlds:
@@ -32,16 +32,16 @@ Name:
 EnabledEconomy: true
 
 # 圈地价格计算公式
-CostEquation: XSize * ZSize * 10
+CostEquation: XSize * ZSize * 1
 
 # 每个用户的最多可拥有的领地数
 MaxAreas: 3
 
 # 尺寸限制
-MinXSize: 5
-MinZSize: 5
-MaxXSize: 50
-MaxZSize: 50
+MinXSize: 3
+MinZSize: 3
+MaxXSize: 100
+MaxZSize: 100
 
 # 区域默认权限设置
 DefaultAreaFlags:
@@ -49,7 +49,9 @@ DefaultAreaFlags:
 
 # 消息
 Messages:
-  ServerLand: 服务器所属
+  ServerLand:
+    Name: 服务器所属
+    Success: "<GREEN>已经将领地 <RED>{0}<GREEN>的主人更改为服务器土地"
   PlayerContextRequired: 此命令需要玩家执行
   NoPermissionForThisCommand: 你没有权限执行这个命令
   InvalidNumber: <RED>不正确的数值 <YELLOW>"{0}"
@@ -166,8 +168,6 @@ Messages:
     ExpenseConfirm: "<YELLOW>开启领地传送需要花费: <RED>{0}<YELLOW>, 请再输入一次设置命令以确认开启"
   SetOwner:
     Success: "<GREEN>已经将领地 <RED>{0}<GREEN>的主人更改为: <YELLOW>{1}"
-  ServerLand:
-    Success: "<GREEN>已经将领地 <RED>{0}<GREEN>的主人更改为服务器土地"
   Flags:
     Root: 根权限
     PVP: PVP

@@ -65,7 +65,7 @@ public abstract class Area extends AreaRange {
 	 * 取得区域拥有人
 	 */
 	public String getOwnerName() {
-		return owner == null ? Config.getMessage("ServerLand") : owner.getName();
+		return owner == null ? Config.getMessage("ServerLand.Name") : owner.getName();
 	}
 	
 	/**

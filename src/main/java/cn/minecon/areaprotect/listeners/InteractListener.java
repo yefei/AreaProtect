@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.Event.Result;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityInteractEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
@@ -38,10 +39,10 @@ public class InteractListener implements Listener {
             pressure(player, block, event);
             return;
         }
-        if (player.getItemInHand().getType() == Config.getSelectionTool()) {
+        if (player.getInventory().getItemInMainHand().getType() == Config.getSelectionTool()) {
             select(player, block, event);
         }
-        if (event.isCancelled()) {
+        if (event.useInteractedBlock() == Result.DENY) {
             return;
         }
         interact(player, block, event);
@@ -67,8 +68,8 @@ public class InteractListener implements Listener {
             case TRAPPED_CHEST:
                 return FlagManager.CHEST;
             case FURNACE:
-            case BURNING_FURNACE:
-                return FlagManager.FURNACE;
+            // case BURNING_FURNACE:
+            //     return FlagManager.FURNACE;
             case BREWING_STAND:
                 return FlagManager.BREW;
             case STONE_BUTTON:
@@ -77,42 +78,42 @@ public class InteractListener implements Listener {
                 return FlagManager.BUTTON;
             case LEVER:
                 return FlagManager.LEVER;
-            case DIODE_BLOCK_OFF:
-            case DIODE_BLOCK_ON:
-            case DIODE:
-                return FlagManager.DIODE;
-            case CAKE_BLOCK:
-                return FlagManager.CAKE;
+            // case DIODE_BLOCK_OFF:
+            // case DIODE_BLOCK_ON:
+            // case DIODE:
+            //     return FlagManager.DIODE;
+            // case CAKE_BLOCK:
+            //     return FlagManager.CAKE;
             case DRAGON_EGG:
                 return FlagManager.DRAGONEGG;
-            case FENCE_GATE:
+            // case FENCE_GATE:
             case SPRUCE_FENCE_GATE:
             case BIRCH_FENCE_GATE:
             case JUNGLE_FENCE_GATE:
             case DARK_OAK_FENCE_GATE:
             case ACACIA_FENCE_GATE:
                 return FlagManager.FENCEGATE;
-            case WOODEN_DOOR:
+            // case WOODEN_DOOR:
             case SPRUCE_DOOR:
             case BIRCH_DOOR:
             case JUNGLE_DOOR:
             case ACACIA_DOOR:
             case DARK_OAK_DOOR:
-            case IRON_DOOR_BLOCK:
+            // case IRON_DOOR_BLOCK:
                 return FlagManager.HINGEDDOOR;
-            case TRAP_DOOR:
-                return FlagManager.TRAPDOOR;
+            // case TRAP_DOOR:
+            //     return FlagManager.TRAPDOOR;
             case ANVIL:
                 return FlagManager.ANVIL;
-            case BED:
-            case BED_BLOCK:
-                return FlagManager.BED;
-            case ENCHANTMENT_TABLE:
-                return FlagManager.ENCHANTMENTTABLE;
+            // case BED:
+            // case BED_BLOCK:
+            //     return FlagManager.BED;
+            // case ENCHANTMENT_TABLE:
+            //     return FlagManager.ENCHANTMENTTABLE;
             case ENDER_CHEST:
                 return FlagManager.ENDERCHEST;
-            case WORKBENCH:
-                return FlagManager.WORKBENCH;
+            // case WORKBENCH:
+            //     return FlagManager.WORKBENCH;
             case HOPPER:
                 return FlagManager.HOPPER;
             case DROPPER:
@@ -144,7 +145,7 @@ public class InteractListener implements Listener {
             return;
         }
         final Material mat = block.getType();
-        if (mat == Material.SOIL || mat == Material.SOUL_SAND) {
+        if (mat == Material.SOUL_SAND) {
             if (!plugin.allowAction(block.getLocation(), player, FlagManager.TRAMPLE)) {
                 event.setCancelled(true);
                 return;
@@ -187,7 +188,7 @@ public class InteractListener implements Listener {
         final Block block = event.getBlock();
         final Material mat = block.getType();
         final Entity entity = event.getEntity();
-        if ((entity.getType() == EntityType.FALLING_BLOCK) || !(mat == Material.SOIL || mat == Material.SOUL_SAND)) {
+        if ((entity.getType() == EntityType.FALLING_BLOCK) || mat != Material.SOUL_SAND) {
             return;
         }
         if (!plugin.allowAction(block.getLocation(), FlagManager.TRAMPLE)) {

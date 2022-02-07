@@ -4,6 +4,7 @@ website: http://minecon.cn
 description: Area Protect
 main: cn.minecon.areaprotect.AreaProtect
 version: ${project.version}
+api-version: 1.18
 softdepend: [Vault]
 commands:
   area:

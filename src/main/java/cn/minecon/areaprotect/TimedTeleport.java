@@ -35,7 +35,6 @@ public class TimedTeleport implements Runnable {
 		this.timerTask = plugin.runTaskTimerAsynchronously(this, 20, 20).getTaskId();
 	}
 
-	@Override
 	public void run() {
 		final Player player = plugin.getServer().getPlayer(this.playerUUID);
 
@@ -63,7 +62,6 @@ public class TimedTeleport implements Runnable {
 		if (now > timerStarted + timerDelay) {
 			NmsPacket.sendActionText(player, Config.getMessage("TeleportationCommencing"));
 			plugin.scheduleSyncDelayedTask(new Runnable() {
-				@Override
 				public void run() {
 					cancelTimer(false);
 					player.teleport(timerTeleportTarget, TeleportCause.COMMAND);

@@ -21,10 +21,10 @@ public class FlowListener implements Listener {
     public void onBlockFromTo(final BlockFromToEvent event) {
     	final Material mat = event.getBlock().getType();
         Flag flag = null;
-        if (mat == Material.LAVA || mat == Material.STATIONARY_LAVA) {
+        if (mat == Material.LAVA) {
             flag = FlagManager.LAVAFLOW;
         }
-        if (mat == Material.WATER || mat == Material.STATIONARY_WATER) {
+        if (mat == Material.WATER) {
             flag = FlagManager.WATERFLOW;
         }
         if (flag == null) {

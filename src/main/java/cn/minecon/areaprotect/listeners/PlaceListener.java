@@ -1,6 +1,5 @@
 package cn.minecon.areaprotect.listeners;
 
-import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -14,7 +13,6 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.hanging.HangingPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.material.Dye;
 
 import cn.minecon.areaprotect.AreaProtect;
 import cn.minecon.areaprotect.Config;
@@ -40,14 +38,11 @@ public class PlaceListener implements Listener {
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onPlace(PlayerInteractEvent event) {
     	final Player player = event.getPlayer();
-        if (player.getItemInHand() == null) {
+        final ItemStack item = player.getInventory().getItemInMainHand();
+        if (item == null) {
             return;
         }
         if (event.getAction() != Action.RIGHT_CLICK_BLOCK) {
-            return;
-        }
-        final ItemStack item = event.getPlayer().getItemInHand();
-        if (item == null) {
             return;
         }
         final Block block = event.getClickedBlock();
@@ -55,20 +50,21 @@ public class PlaceListener implements Listener {
             return;
         }
         final Material mat = item.getType();
-        if (block.getType() == Material.GRASS) {
-            if (mat != Material.INK_SACK) {
-                return;
-            }
-            if (((Dye) item.getData()).getColor() != DyeColor.WHITE) {
-                return;
-            }
-            place(player, block.getLocation().add(0, 1, 0), event);
-            return;
-        }
+        // if (block.getType() == Material.GRASS) {
+        //     if (mat != Material.INK_SACK) {
+        //         return;
+        //     }
+        //     if (((Dye) item.getData()).getColor() != DyeColor.WHITE) {
+        //         return;
+        //     }
+        //     place(player, block.getLocation().add(0, 1, 0), event);
+        //     return;
+        // }
         if (block.getType() == Material.FLOWER_POT) {
-            if (mat != Material.SAPLING &&
-            	mat != Material.RED_ROSE &&
-            	mat != Material.YELLOW_FLOWER &&
+            if (
+                // mat != Material.SAPLING &&
+            	// mat != Material.RED_ROSE &&
+            	// mat != Material.YELLOW_FLOWER &&
             	mat != Material.RED_MUSHROOM &&
             	mat != Material.BROWN_MUSHROOM &&
             	mat != Material.DEAD_BUSH &&

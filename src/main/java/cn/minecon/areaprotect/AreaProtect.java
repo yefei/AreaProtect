@@ -33,121 +33,122 @@ import net.milkbowl.vault.economy.Economy;
 public class AreaProtect extends JavaPlugin {
 	private static AreaProtect instance;
 	private Economy economy;
-    private Set<UUID> adminPlayers;
-    private SelectionManager selectionManager;
+	private Set<UUID> adminPlayers;
+	private SelectionManager selectionManager;
 	private AreaManager areaManager;
-	
+
 	@Override
 	public void onLoad() {
 		instance = this;
 		Log.initLogger(getLogger());
-        saveDefaultConfig();
+		saveDefaultConfig();
 		new Config(getConfig());
 		FlagManager.initFlags();
 	}
-	
+
 	@Override
-    public void onEnable() {
+	public void onEnable() {
 		adminPlayers = new HashSet<UUID>();
 		selectionManager = new SelectionManager(this);
-		
+
 		final PluginManager pluginManager = getServer().getPluginManager();
-		
+
 		final Plugin p = pluginManager.getPlugin("Vault");
-        if (p != null) {
-            Log.info("Found Vault");
-            setupVault();
-        } else {
-        	Log.info("Vault NOT found!");
-        }
-        
-        try {
-        	areaManager = new YAMLAreaManager(getDataFolder());
-        } catch (Exception e) {
-        	Log.severe("Loading save data", e);
-        	getServer().shutdown();
-        	return;
-        }
-        
-        pluginManager.registerEvents(new InteractListener(this), this);
-        pluginManager.registerEvents(new DestroyListener(this), this);
-        pluginManager.registerEvents(new PlaceListener(this), this);
-        pluginManager.registerEvents(new BucketListener(this), this);
-        pluginManager.registerEvents(new DamageListener(this), this);
-        pluginManager.registerEvents(new ExplosionListener(this), this);
-        pluginManager.registerEvents(new EndermanPickupListener(this), this);
-        pluginManager.registerEvents(new FireListener(this), this);
-        pluginManager.registerEvents(new FlowListener(this), this);
-        pluginManager.registerEvents(new PistonListener(this), this);
-        
-        getCommand("area").setExecutor(new AreaProtectCommand(this));
+		if (p != null) {
+			Log.info("Found Vault");
+			setupVault();
+		} else {
+			Log.info("Vault NOT found!");
+		}
+
+		try {
+			areaManager = new YAMLAreaManager(getDataFolder());
+		} catch (Exception e) {
+			Log.severe("Loading save data", e);
+			getServer().shutdown();
+			return;
+		}
+
+		pluginManager.registerEvents(new InteractListener(this), this);
+		pluginManager.registerEvents(new DestroyListener(this), this);
+		pluginManager.registerEvents(new PlaceListener(this), this);
+		pluginManager.registerEvents(new BucketListener(this), this);
+		pluginManager.registerEvents(new DamageListener(this), this);
+		pluginManager.registerEvents(new ExplosionListener(this), this);
+		pluginManager.registerEvents(new EndermanPickupListener(this), this);
+		pluginManager.registerEvents(new FireListener(this), this);
+		pluginManager.registerEvents(new FlowListener(this), this);
+		pluginManager.registerEvents(new PistonListener(this), this);
+
+		getCommand("area").setExecutor(new AreaProtectCommand(this));
 	}
-	
+
 	@Override
 	public void onDisable() {
 		adminPlayers = null;
 		selectionManager = null;
 		areaManager = null;
 	}
-	
+
 	public static AreaProtect getInstance() {
-        return instance;
-    }
-	
+		return instance;
+	}
+
 	public SelectionManager getSelectionManager() {
 		return selectionManager;
 	}
-	
+
 	public AreaManager getAreaManager() {
 		return areaManager;
 	}
-	
+
 	public Economy getEconomy() {
 		return economy;
 	}
-	
+
 	public boolean isEconomy() {
 		return economy != null && Config.isEnabledEconomy();
 	}
-	
+
 	private void setupVault() {
-		final RegisteredServiceProvider<Economy> econProvider = getServer().getServicesManager().getRegistration(Economy.class);
-        if (econProvider != null) {
-            economy = econProvider.getProvider();
-        }
+		final RegisteredServiceProvider<Economy> econProvider = getServer().getServicesManager()
+				.getRegistration(Economy.class);
+		if (econProvider != null) {
+			economy = econProvider.getProvider();
+		}
 	}
-	
+
 	public void deactivateAdminMode(OfflinePlayer player) {
 		adminPlayers.remove(player.getUniqueId());
-    }
-	
-    public void activateAdminMode(OfflinePlayer player) {
-    	adminPlayers.add(player.getUniqueId());
-    }
-    
-    public boolean isAdminMode(OfflinePlayer player) {
-        return adminPlayers.contains(player.getUniqueId());
-    }
-    
-    public boolean allowAction(Location location, Player player, Flag flag) {
-    	final Area area = areaManager.getByLocation(location);
-    	if (area == null) {
-    		return true;
-    	}
-    	if (player == null) {
-    		return area.allowAction(flag);
-    	}
-    	return area.allowAction(player, flag);
-    }
-    
-    public boolean allowAction(Location location, Flag flag) {
-    	return allowAction(location, null, flag);
-    }
-    
+	}
+
+	public void activateAdminMode(OfflinePlayer player) {
+		adminPlayers.add(player.getUniqueId());
+	}
+
+	public boolean isAdminMode(OfflinePlayer player) {
+		return adminPlayers.contains(player.getUniqueId());
+	}
+
+	public boolean allowAction(Location location, Player player, Flag flag) {
+		final Area area = areaManager.getByLocation(location);
+		if (area == null) {
+			return true;
+		}
+		if (player == null) {
+			return area.allowAction(flag);
+		}
+		return area.allowAction(player, flag);
+	}
+
+	public boolean allowAction(Location location, Flag flag) {
+		return allowAction(location, null, flag);
+	}
+
 	public BukkitTask runTaskAsynchronously(final Runnable run) {
 		return this.getServer().getScheduler().runTaskAsynchronously(this, run);
 	}
-	
+
 	public BukkitTask runTaskLaterAsynchronously(final Runnable run, final long delay) {
 		return this.getServer().getScheduler().runTaskLaterAsynchronously(this, run, delay);
 	}
@@ -155,15 +156,15 @@ public class AreaProtect extends JavaPlugin {
 	public BukkitTask runTaskTimerAsynchronously(final Runnable run, final long delay, final long period) {
 		return this.getServer().getScheduler().runTaskTimerAsynchronously(this, run, delay, period);
 	}
-	
+
 	public int scheduleSyncDelayedTask(final Runnable run) {
 		return this.getServer().getScheduler().scheduleSyncDelayedTask(this, run);
 	}
-	
+
 	public int scheduleSyncDelayedTask(final Runnable run, final long delay) {
 		return this.getServer().getScheduler().scheduleSyncDelayedTask(this, run, delay);
 	}
-	
+
 	public int scheduleSyncRepeatingTask(final Runnable run, final long delay, final long period) {
 		return this.getServer().getScheduler().scheduleSyncRepeatingTask(this, run, delay, period);
 	}
