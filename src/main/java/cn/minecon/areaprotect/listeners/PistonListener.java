@@ -19,49 +19,54 @@ public class PistonListener implements Listener {
 	}
 
 	// 活塞拉回
-    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
-    public void onBlockPistonRetract(BlockPistonRetractEvent event) {
-    	// 忽略非黏性的
-    	if (!event.isSticky()) {
-            return;
-        }
-    	
-    	final Area pistonArea = plugin.getAreaManager().getByLocation(event.getBlock().getLocation());
-    	
-    	for (Block block : event.getBlocks()) {
-    		// Is the retracted block air/water/lava? Don't worry about it
-    		if (block.isEmpty() || block.isLiquid()) return;
-    		
-    		// 被推动的目标方块所属区域
-    		final Area targetArea = plugin.getAreaManager().getByLocation(block.getLocation());
-        	if (targetArea == pistonArea) continue;
-        	
-        	// 检查目标区域是否允许使用活塞
-        	if (targetArea.allowAction(FlagManager.PISTON)) continue;
-        	
-        	event.setCancelled(true);
+	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+	public void onBlockPistonRetract(BlockPistonRetractEvent event) {
+		// 忽略非黏性的
+		if (!event.isSticky()) {
 			return;
-    	}
-    }
-    
-    // 活塞推出
-    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
-    public void onBlockPistonExtend(BlockPistonExtendEvent event) {
-    	final Area pistonArea = plugin.getAreaManager().getByLocation(event.getBlock().getLocation());
-    	
-        for (Block block : event.getBlocks()) {
-        	// 被推动的目标方块
-        	final Block targetBlock = block.getRelative(event.getDirection());
-        	
-        	// 被推动的目标方块所属区域
-        	final Area targetArea = plugin.getAreaManager().getByLocation(targetBlock.getLocation());
-        	if (targetArea == pistonArea) continue;
-        	
-        	// 检查目标区域是否允许使用活塞
-        	if (targetArea.allowAction(FlagManager.PISTON)) continue;
-        	
-        	event.setCancelled(true);
+		}
+
+		final Area pistonArea = plugin.getAreaManager().getByLocation(event.getBlock().getLocation());
+
+		for (Block block : event.getBlocks()) {
+			// Is the retracted block air/water/lava? Don't worry about it
+			if (block.isEmpty() || block.isLiquid())
+				return;
+
+			// 被推动的目标方块所属区域
+			final Area targetArea = plugin.getAreaManager().getByLocation(block.getLocation());
+			if (targetArea == pistonArea)
+				continue;
+
+			// 检查目标区域是否允许使用活塞
+			if (targetArea.allowAction(FlagManager.PISTON))
+				continue;
+
+			event.setCancelled(true);
 			return;
-        }
-    }
+		}
+	}
+
+	// 活塞推出
+	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+	public void onBlockPistonExtend(BlockPistonExtendEvent event) {
+		final Area pistonArea = plugin.getAreaManager().getByLocation(event.getBlock().getLocation());
+
+		for (Block block : event.getBlocks()) {
+			// 被推动的目标方块
+			final Block targetBlock = block.getRelative(event.getDirection());
+
+			// 被推动的目标方块所属区域
+			final Area targetArea = plugin.getAreaManager().getByLocation(targetBlock.getLocation());
+			if (targetArea == pistonArea)
+				continue;
+
+			// 检查目标区域是否允许使用活塞
+			if (targetArea.allowAction(FlagManager.PISTON))
+				continue;
+
+			event.setCancelled(true);
+			return;
+		}
+	}
 }

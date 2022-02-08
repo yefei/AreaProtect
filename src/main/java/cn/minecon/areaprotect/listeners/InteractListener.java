@@ -27,7 +27,7 @@ public class InteractListener implements Listener {
 	public InteractListener(AreaProtect plugin) {
 		this.plugin = plugin;
 	}
-	
+
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onPlayerInteract(PlayerInteractEvent event) {
         final Player player = event.getPlayer();

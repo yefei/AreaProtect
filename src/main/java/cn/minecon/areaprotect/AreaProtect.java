@@ -24,11 +24,13 @@ import cn.minecon.areaprotect.listeners.ExplosionListener;
 import cn.minecon.areaprotect.listeners.FireListener;
 import cn.minecon.areaprotect.listeners.FlowListener;
 import cn.minecon.areaprotect.listeners.InteractListener;
+import cn.minecon.areaprotect.listeners.MoveListener;
 import cn.minecon.areaprotect.listeners.PistonListener;
 import cn.minecon.areaprotect.listeners.PlaceListener;
 import cn.minecon.areaprotect.storage.YAMLAreaManager;
 import cn.minecon.areaprotect.utils.Log;
 import net.milkbowl.vault.economy.Economy;
+import xyz.xenondevs.particle.utils.ReflectionUtils;
 
 public class AreaProtect extends JavaPlugin {
 	private static AreaProtect instance;
@@ -48,6 +50,8 @@ public class AreaProtect extends JavaPlugin {
 
 	@Override
 	public void onEnable() {
+		ReflectionUtils.setPlugin(this);
+
 		adminPlayers = new HashSet<UUID>();
 		selectionManager = new SelectionManager(this);
 
@@ -79,6 +83,7 @@ public class AreaProtect extends JavaPlugin {
 		pluginManager.registerEvents(new FireListener(this), this);
 		pluginManager.registerEvents(new FlowListener(this), this);
 		pluginManager.registerEvents(new PistonListener(this), this);
+		pluginManager.registerEvents(new MoveListener(this), this);
 
 		getCommand("area").setExecutor(new AreaProtectCommand(this));
 	}

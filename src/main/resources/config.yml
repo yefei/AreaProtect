@@ -90,6 +90,8 @@ Messages:
   AreaNotSetTPLocation: <RED>领地<YELLOW>{0}<RED>没有设置传送点
   TeleportationCommencing: <GREEN>开始传送
   TeleportationCountdown: <GREEN>传送倒计时 <YELLOW>{0} <GREEN>秒
+  AreaIn: <GRAY>你已经进入领地<GREEN>{0}
+  AreaOut: <GRAY>你已经离开领地<GREEN>{0}
   Info:
     Header: <DARK_GREEN>====================[ <YELLOW>查看领地信息 <DARK_GREEN>]====================
     Name: "<LIGHT_PURPLE>领地名称: <YELLOW>{0}"

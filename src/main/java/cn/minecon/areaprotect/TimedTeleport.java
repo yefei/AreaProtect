@@ -5,8 +5,6 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
-import cn.minecon.areaprotect.utils.nms.NmsPacket;
-
 public class TimedTeleport implements Runnable {
 	final private static double MOVE_CONSTANT = 0.3;
 	final private AreaProtect plugin;
@@ -60,7 +58,7 @@ public class TimedTeleport implements Runnable {
 		final long now = System.currentTimeMillis();
 		
 		if (now > timerStarted + timerDelay) {
-			NmsPacket.sendActionText(player, Config.getMessage("TeleportationCommencing"));
+			player.sendMessage(Config.getMessage("TeleportationCommencing"));
 			plugin.scheduleSyncDelayedTask(new Runnable() {
 				public void run() {
 					cancelTimer(false);
@@ -72,7 +70,8 @@ public class TimedTeleport implements Runnable {
 			});
 		} else {
 			// 显示倒计时
-			NmsPacket.sendActionText(player, Config.getMessage("TeleportationCountdown", (int)Math.round((timerStarted + timerDelay - now) / 1000)));
+			String msg = Config.getMessage("TeleportationCountdown", (int)Math.ceil((timerStarted + timerDelay - now) / 1000));
+			player.sendTitle(msg, null, 10, 20, 10);
 		}
 	}
 	

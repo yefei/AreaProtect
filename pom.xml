@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>cn.minecon</groupId>
   <artifactId>AreaProtect</artifactId>
-  <version>1.2.1</version>
+  <version>1.2.2</version>
   <name>AreaProtect</name>
   <description>Minecraft BukkitServer area protect plugin</description>
   <url>https://www.minecon.cn</url>
@@ -12,10 +12,10 @@
 		<maven.compiler.target>17</maven.compiler.target>	
   </properties>
   <repositories>
-	<repository>
-			<id>jitpack.io</id>
-			<url>https://jitpack.io</url>
-	</repository>
+		<repository>
+				<id>jitpack.io</id>
+				<url>https://jitpack.io</url>
+		</repository>
   </repositories>
   <dependencies>
   	<dependency>
@@ -24,11 +24,16 @@
   		<version>1.18.1-R0.1-SNAPSHOT</version>
   	</dependency>
   	<dependency>
-		<groupId>com.github.MilkBowl</groupId>
-		<artifactId>VaultAPI</artifactId>
-		<version>1.7</version>
-		<scope>provided</scope>
-	</dependency>
+			<groupId>com.github.MilkBowl</groupId>
+			<artifactId>VaultAPI</artifactId>
+			<version>1.7</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+				<groupId>xyz.xenondevs</groupId>
+				<artifactId>particle</artifactId>
+				<version>1.7</version>
+		</dependency>
   </dependencies>
   <build>
 	<resources>

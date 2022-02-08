@@ -9,7 +9,8 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 import cn.minecon.areaprotect.AreaProtect;
-import cn.minecon.areaprotect.utils.nms.ParticleEffect;
+import xyz.xenondevs.particle.ParticleBuilder;
+import xyz.xenondevs.particle.ParticleEffect;
 
 public class AreaRangeSee implements Runnable {
 	final private AreaProtect plugin;
@@ -52,7 +53,7 @@ public class AreaRangeSee implements Runnable {
 
 		List<Location> locations = getLocations(areaRange, player);
 		for (Location location : locations) {
-			ParticleEffect.FIREWORKS_SPARK.display(location, 0, 2, 0, 0, 30, player);
+			new ParticleBuilder(ParticleEffect.FIREWORKS_SPARK, location).display();
 		}
 	}
 

@@ -5,6 +5,8 @@ description: Area Protect
 main: cn.minecon.areaprotect.AreaProtect
 version: ${project.version}
 api-version: 1.18
+libraries:
+  - xyz.xenondevs:particle:1.7
 softdepend: [Vault]
 commands:
   area:
