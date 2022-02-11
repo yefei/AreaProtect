@@ -23,12 +23,12 @@ public class FlagManager {
     public static final Flag LAVAFLOW = new Flag("LavaFlow", FLOW, Config.getMessage("Flags.LavaFlow"));
     public static final Flag WATERFLOW = new Flag("WaterFlow", FLOW, Config.getMessage("Flags.WaterFlow"));
     
-    public static final Flag ROOT = new Flag("Root", null, Config.getMessage("Flags.Root"));
+    public static final Flag ALL = new Flag("All", null, Config.getMessage("Flags.All"));
     
-    public static final Flag DAMAGE = new Flag("Damage", ROOT, Config.getMessage("Flags.Damage"));
+    public static final Flag DAMAGE = new Flag("Damage", ALL, Config.getMessage("Flags.Damage"));
     public static final Flag PVP = new Flag("PVP", DAMAGE, Config.getMessage("Flags.PVP"));
     
-    public static final Flag BUILD = new Flag("Build", ROOT, Config.getMessage("Flags.Build"));
+    public static final Flag BUILD = new Flag("Build", ALL, Config.getMessage("Flags.Build"));
     
     public static final Flag PLACE = new Flag("Place", BUILD, Config.getMessage("Flags.Place"));
     public static final Flag IGNITE = new Flag("Ignite", PLACE, Config.getMessage("Flags.Ignite"));
@@ -39,8 +39,9 @@ public class FlagManager {
     public static final Flag LAVABUCKET = new Flag("LavaBucket", BUCKET, Config.getMessage("Flags.LavaBucket"));
     public static final Flag WATERBUCKET = new Flag("WaterBucket", BUCKET, Config.getMessage("Flags.WaterBucket"));
     
-    public static final Flag USE = new Flag("Use", ROOT, Config.getMessage("Flags.Use"));
+    public static final Flag USE = new Flag("Use", ALL, Config.getMessage("Flags.Use"));
     
+    /*
     public static final Flag BUTTON = new Flag("Button", USE, Config.getMessage("Flags.Button"));
     // 压力板可以被非玩家激活, 所以等于无效, 为避免漏洞产生直接开放压力板
     // public static final Flag PRESSUREPLATE = new Flag("PressurePlate", USE, Config.getMessage("Flags.PressurePlate"));
@@ -72,6 +73,7 @@ public class FlagManager {
     public static final Flag HOPPER = new Flag("Hopper", CONTAINER, Config.getMessage("Flags.Hopper"));
     public static final Flag DROPPER = new Flag("Dropper", CONTAINER, Config.getMessage("Flags.Dropper"));
     public static final Flag DISPENSER = new Flag("Dispenser", CONTAINER, Config.getMessage("Flags.Dispenser"));
+    */
     
     /*
     public static final Flag SPAWN = new Flag("Spawn", null, Config.getMessage("Flags.Spawn"));
@@ -79,7 +81,7 @@ public class FlagManager {
     public static final Flag ANIMALSPAWN = new Flag("AnimalSpawn", SPAWN, Config.getMessage("Flags.AnimalSpawn"));
 	*/
     
-    public static final Flag TELEPORT = new Flag("TP", ROOT, Config.getMessage("Flags.TP"));
+    public static final Flag TELEPORT = new Flag("TP", ALL, Config.getMessage("Flags.TP"));
 
     private static Map<String, Flag> validFlags;
 
@@ -134,7 +136,7 @@ public class FlagManager {
         addFlag(FLOW);
         addFlag(WATERFLOW);
         addFlag(LAVAFLOW);
-        addFlag(ROOT);
+        addFlag(ALL);
         addFlag(DAMAGE);
         addFlag(PVP);
         addFlag(BUILD);
@@ -146,6 +148,7 @@ public class FlagManager {
         addFlag(LAVABUCKET);
         addFlag(WATERBUCKET);
         addFlag(USE);
+        /*
         addFlag(BUTTON);
         //addFlag(PRESSUREPLATE);
         addFlag(LEVER);
@@ -172,6 +175,7 @@ public class FlagManager {
         addFlag(HOPPER);
         addFlag(DROPPER);
         addFlag(DISPENSER);
+        */
         /*
         addFlag(SPAWN);
         addFlag(MONSTERSPAWN);

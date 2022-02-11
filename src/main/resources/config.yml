@@ -90,8 +90,9 @@ Messages:
   AreaNotSetTPLocation: <RED>领地<YELLOW>{0}<RED>没有设置传送点
   TeleportationCommencing: <GREEN>开始传送
   TeleportationCountdown: <GREEN>传送倒计时 <YELLOW>{0} <GREEN>秒
-  AreaIn: <GRAY>你已经进入领地<GREEN>{0}
-  AreaOut: <GRAY>你已经离开领地<GREEN>{0}
+  AreaIn: <GRAY>进入领地<GREEN>{0}
+  AreaOut: <GRAY>离开领地<GREEN>{0}
+  AreaInfo: <GRAY>领地主人<GREEN>{0} <GRAY>面积<YELLOW>{1}<GRAY>平方
   Info:
     Header: <DARK_GREEN>====================[ <YELLOW>查看领地信息 <DARK_GREEN>]====================
     Name: "<LIGHT_PURPLE>领地名称: <YELLOW>{0}"
@@ -171,7 +172,7 @@ Messages:
   SetOwner:
     Success: "<GREEN>已经将领地 <RED>{0}<GREEN>的主人更改为: <YELLOW>{1}"
   Flags:
-    Root: 根权限
+    All: 全部权限
     PVP: PVP
     Build: 放置和破坏方块
     Destroy: 破坏

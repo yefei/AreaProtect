@@ -18,7 +18,7 @@ import cn.minecon.areaprotect.events.AreaTeleportLocationChangedEvent;
 
 public abstract class Area extends AreaRange {
 	protected Map<Flag, Boolean> areaFlags;
-	protected Map<OfflinePlayer, Map<Flag, Boolean>> playerFlags;
+	protected Map<UUID, Map<Flag, Boolean>> playerFlags;
 	protected UUID uuid;
 	protected String name;
 	protected OfflinePlayer owner;
@@ -130,7 +130,7 @@ public abstract class Area extends AreaRange {
     	if (isOwner(player) || AreaProtect.getInstance().isAdminMode(player)) {
     		return true;
     	}
-    	final Map<Flag, Boolean> flags = playerFlags.get(player);
+    	final Map<Flag, Boolean> flags = playerFlags.get(player.getUniqueId());
         while (true) {
             Boolean bool = null;
             if (flags != null) {
@@ -211,10 +211,10 @@ public abstract class Area extends AreaRange {
      */
     public void copyFlags(Area mirror) {
     	areaFlags = new HashMap<Flag, Boolean>(mirror.getAreaFlags());
-        playerFlags = new HashMap<OfflinePlayer, Map<Flag, Boolean>>();
-        final Map<OfflinePlayer, Map<Flag, Boolean>> flags = mirror.getPlayerFlags();
-        for (OfflinePlayer player : flags.keySet()) {
-            playerFlags.put(player, new HashMap<Flag, Boolean>(flags.get(player)));
+        playerFlags = new HashMap<UUID, Map<Flag, Boolean>>();
+        final Map<UUID, Map<Flag, Boolean>> flags = mirror.getPlayerFlags();
+        for (UUID playerUUID : flags.keySet()) {
+            playerFlags.put(playerUUID, new HashMap<Flag, Boolean>(flags.get(playerUUID)));
         }
         AreaProtect.getInstance().getServer().getPluginManager().callEvent(new AreaFlagsChangedEvent(this));
     }
@@ -223,13 +223,13 @@ public abstract class Area extends AreaRange {
      * 取得指定玩家在此所特有的权限
      */
     public Map<Flag, Boolean> getPlayerFlags(OfflinePlayer player) {
-    	return playerFlags.get(player);
+    	return playerFlags.get(player.getUniqueId());
     }
     
     /**
      * 取得全部玩家的特有权限
      */
-    public Map<OfflinePlayer, Map<Flag, Boolean>> getPlayerFlags() {
+    public Map<UUID, Map<Flag, Boolean>> getPlayerFlags() {
     	return playerFlags;
     }
     
@@ -237,7 +237,7 @@ public abstract class Area extends AreaRange {
      * 清除指定玩家的全部特有权限
      */
     public void clearPlayerFlags(OfflinePlayer player) {
-    	playerFlags.remove(player);
+    	playerFlags.remove(player.getUniqueId());
 		AreaProtect.getInstance().getServer().getPluginManager().callEvent(new AreaFlagsChangedEvent(this));
     }
     
@@ -245,10 +245,10 @@ public abstract class Area extends AreaRange {
      * 设置玩家权限
      */
     public void setPlayerFlag(OfflinePlayer player, Flag flag, boolean value) {
-    	Map<Flag, Boolean> flags = playerFlags.get(player);
+    	Map<Flag, Boolean> flags = playerFlags.get(player.getUniqueId());
         if (flags == null) {
             flags = new HashMap<Flag, Boolean>();
-            playerFlags.put(player, flags);
+            playerFlags.put(player.getUniqueId(), flags);
         }
         flags.put(flag, value);
         AreaProtect.getInstance().getServer().getPluginManager().callEvent(new AreaFlagsChangedEvent(this));
@@ -258,10 +258,10 @@ public abstract class Area extends AreaRange {
      * 删除玩家权限
      */
     public void removePlayerFlag(OfflinePlayer player, Flag flag) {
-    	final Map<Flag, Boolean> flags = playerFlags.get(player);
+    	final Map<Flag, Boolean> flags = playerFlags.get(player.getUniqueId());
     	flags.remove(flag);
     	if (flags.isEmpty()) {
-            playerFlags.remove(player);
+            playerFlags.remove(player.getUniqueId());
         }
     	AreaProtect.getInstance().getServer().getPluginManager().callEvent(new AreaFlagsChangedEvent(this));
     }

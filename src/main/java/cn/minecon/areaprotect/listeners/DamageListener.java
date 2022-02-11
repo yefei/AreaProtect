@@ -120,7 +120,6 @@ public class DamageListener implements Listener {
     private Flag getFlag(EntityType ent) {
         switch (ent) {
         case ITEM_FRAME:
-        	return FlagManager.ITEMFRAME;
         case ARMOR_STAND:
         	return FlagManager.DESTROY;
         default:

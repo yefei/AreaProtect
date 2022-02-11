@@ -14,7 +14,6 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityInteractEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerArmorStandManipulateEvent;
 
 import cn.minecon.areaprotect.AreaProtect;
 import cn.minecon.areaprotect.Config;
@@ -63,6 +62,8 @@ public class InteractListener implements Listener {
     }
 
     private Flag getFlag(Material mat) {
+        return FlagManager.USE;
+        /*
         switch (mat) {
             case CHEST:
             case TRAPPED_CHEST:
@@ -123,6 +124,7 @@ public class InteractListener implements Listener {
             default:
                 return null;
         }
+        */
     }
     
     private void select(Player player, Block block, PlayerInteractEvent event) {
@@ -174,12 +176,16 @@ public class InteractListener implements Listener {
         if (ent == null) {
             return;
         }
-        if (ent.getType() != EntityType.ITEM_FRAME) {
-            return;
-        }
-        if (!plugin.allowAction(ent.getLocation(), player, FlagManager.ITEMFRAME)) {
+        // if (ent.getType() != EntityType.ITEM_FRAME) {
+        //     return;
+        // }
+        // if (!plugin.allowAction(ent.getLocation(), player, FlagManager.ITEMFRAME)) {
+        //     event.setCancelled(true);
+        //     player.sendMessage(Config.getMessage("FlagDeny", FlagManager.ITEMFRAME.getDescription()));
+        // }
+        if (!plugin.allowAction(ent.getLocation(), player, FlagManager.USE)) {
             event.setCancelled(true);
-            player.sendMessage(Config.getMessage("FlagDeny", FlagManager.ITEMFRAME.getDescription()));
+            player.sendMessage(Config.getMessage("FlagDeny", FlagManager.USE.getDescription()));
         }
     }
 
@@ -196,6 +202,7 @@ public class InteractListener implements Listener {
         }
     }
     
+    /*
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onPlayerArmorStandManipulate(PlayerArmorStandManipulateEvent event) {
     	final Player player = event.getPlayer();
@@ -208,4 +215,5 @@ public class InteractListener implements Listener {
             player.sendMessage(Config.getMessage("FlagDeny", FlagManager.ARMORSTAND.getDescription()));
         }
 	}
+    */
 }

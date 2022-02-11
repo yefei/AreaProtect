@@ -1,16 +1,13 @@
 # AreaProtect 领地保护插件
 
-高性能、简单、全面、灵活
-
 可以让玩家圈地保护自己的领地，功能类似于经典的 Residence 插件，但是功能更简单更容易使用。
 与 Residence 插件最大的区别在于 Residence 是圈立方体，而 AreaProtect 圈的是面积，从基岩到最高处全部保护。
 
 ## 下载地址
-支持版本所有 Spigot 1.8 服务器
+支持版本 Spigot 1.18 服务器
 <https://github.com/yefei/AreaProtect/releases>
 
 ## 特色
-* 全面支持 Minecraft 1.8 物品保护
 * 可以保护领地内的生物不被玩家所杀害
 * 防止活塞推入方块，却不影响领地内的活塞使用
 * 圈地时可以形象的看到所圈的区域
@@ -45,7 +42,7 @@ Flow | 液体流动
  ├─ LavaFlow | 岩浆流动
  └─ WaterFlow | 水流动
 
-Root | 根权限 (超级权限,拥有所有权限)
+All | 全部权限
  ├─ Damage | 伤害
  │  └─ PVP | PVP
  ├─ Build | 建造
@@ -57,38 +54,9 @@ Root | 根权限 (超级权限,拥有所有权限)
  │  │  ├─ LavaBucket | 使用岩浆桶
  │  │  └─ WaterBucket | 使用水桶
  │  └─ DragonEgg | 碰触龙蛋
- ├─ Use | 使用
- │  ├─ Button | 石质按钮
- │  ├─ Lever | 拉杆
- │  ├─ Diode | 红石中继器
- │  ├─ Cake | 蛋糕
- │  ├─ Door | 门
- │  │  ├─ FenceGate | 栅栏门
- │  │  ├─ HingedDoor | 木门
- │  │  └─ TrapDoor | 活板门
- │  ├─ Utility | 使用工具
- │  │  ├─ Anvil | 铁砧
- │  │  ├─ Beacon | 信标
- │  │  ├─ Bed | 床
- │  │  ├─ EnchantmentTable | 附魔台
- │  │  ├─ EnderChest | 末影箱
- │  │  └─ WorkBench | 工作台
- │  └─ Container | 容器
- │     ├─ ItemFrame | 展示框
- │     ├─ ArmorStand | 盔甲架
- │     ├─ Chest | 箱子
- │     ├─ Furnace | 熔炉
- │     ├─ Brew | 酿造台
- │     ├─ Hopper | 漏斗
- │     ├─ Dropper | 投掷器
- │     └─ Dispenser | 发射器
+ ├─ Use | 使用 (所有可交互物品)
  └─ TP | 传送
 ```
-
-## 不保护物品
-防止误导玩家，以下为故意去除保护
-* 所有踏板 (因为可以由非玩家激活,例如僵尸、动物、弓箭、掉落物等)
-* 木质按钮 (可以用弓箭激活)
 
 # 玩家教程
 ## 圈地

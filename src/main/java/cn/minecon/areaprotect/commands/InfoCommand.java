@@ -3,6 +3,7 @@ package cn.minecon.areaprotect.commands;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
+import java.util.UUID;
 import java.util.Map.Entry;
 
 import org.bukkit.OfflinePlayer;
@@ -35,11 +36,12 @@ public class InfoCommand extends CommandSub {
 			player.sendMessage(Config.getMessage("Info.AreaFlags", getFlagsDisplay(area.getAreaFlags())));
 			if (area.getPlayerFlags().size() > 0) {
 				player.sendMessage(Config.getMessage("Info.PlayerFlags"));
-				Map<OfflinePlayer, Map<Flag, Boolean>> playerFlags = area.getPlayerFlags();
-				for (OfflinePlayer p : playerFlags.keySet()) {
-					Map<Flag, Boolean> flags = playerFlags.get(p);
+				Map<UUID, Map<Flag, Boolean>> playerFlags = area.getPlayerFlags();
+				for (UUID uuid : playerFlags.keySet()) {
+					Map<Flag, Boolean> flags = playerFlags.get(uuid);
 					if (flags == null || flags.size() == 0) continue;
-					player.sendMessage("  " + p.getName() + ": " + getFlagsDisplay(flags));
+					final OfflinePlayer p = AreaProtect.getInstance().getServer().getOfflinePlayer(uuid);
+					player.sendMessage("  " + (p == null ? uuid.toString() : p.getName()) + ": " + getFlagsDisplay(flags));
 				}
 			} else {
 				player.sendMessage(Config.getMessage("Info.PlayerFlags", Config.getMessage("NotFlags")));

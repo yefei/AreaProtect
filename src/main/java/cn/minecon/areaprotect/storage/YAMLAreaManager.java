@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.Map.Entry;
 
 import org.bukkit.Location;
@@ -152,8 +153,8 @@ public class YAMLAreaManager implements AreaManager {
 		}
 
 		final ConfigurationSection playerFlagsSection = config.createSection("PlayerFlags");
-		for (Entry<OfflinePlayer, Map<Flag, Boolean>> i : area.getPlayerFlags().entrySet()) {
-			final ConfigurationSection s = playerFlagsSection.createSection(i.getKey().getUniqueId().toString());
+		for (Entry<UUID, Map<Flag, Boolean>> i : area.getPlayerFlags().entrySet()) {
+			final ConfigurationSection s = playerFlagsSection.createSection(i.getKey().toString());
 			for (Entry<Flag, Boolean> flag : i.getValue().entrySet()) {
 				s.set(flag.getKey().getName(), flag.getValue());
 			}

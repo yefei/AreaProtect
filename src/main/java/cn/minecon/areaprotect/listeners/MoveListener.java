@@ -25,9 +25,11 @@ public class MoveListener implements Listener {
             return;
         }
         if (toArea != null && fromArea == null) {
-            event.getPlayer().sendTitle(Config.getMessage("AreaIn", toArea.getName()), null, 10, 70, 10);
+            event.getPlayer().sendTitle(Config.getMessage("AreaIn", toArea.getName()),
+                Config.getMessage("AreaInfo", toArea.getOwnerName(), toArea.getSize()),
+                10, 30, 10);
         } else if (toArea == null && fromArea != null) {
-            event.getPlayer().sendTitle(Config.getMessage("AreaOut", fromArea.getName()), null, 10, 70, 10);
+            event.getPlayer().sendTitle(Config.getMessage("AreaOut", fromArea.getName()), null, 10, 30, 10);
         }
     }
 }
