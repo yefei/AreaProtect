@@ -91,3 +91,22 @@ All | 全部权限
 /area setowner <新主人> [领地]                  设置领地主人
 /area serverland [领地]                         将领地设置为服务器土地
 ```
+
+# 服务器管理员
+
+## 权限
+| 权限                      | 描述                                       | 默认值  |
+| ------------------------- | ------------------------------------------ | ------- |
+| areaprotect.admin         | 领地管理员，管理所有领地                     | op      |
+| areaprotect.serverland    | 设置领地为服务器所有                         | op      |
+| areaprotect.select        | 圈地选择                                    | true    |
+| areaprotect.create        | 创建领地                                    | true    |
+| areaprotect.info          | 查看领地信息                                | true    |
+| areaprotect.flag          | 领地主人可设置领地权限                       | true    |
+| areaprotect.flag.player   | 领地主人可设置领地玩家权限                   | true    |
+| areaprotect.list          | 查看服务器全部领地                          | true    |
+| areaprotect.my            | 列出自己的领地                              | true    |
+| areaprotect.delete        | 删除自己的领地                              | true    |
+| areaprotect.tp            | 领地传送                                    | true    |
+| areaprotect.tp.set        | 设置领地传送点                              | true    |
+| areaprotect.setowner      | 设置自己的领地主人(转让领地)                 | true    |
